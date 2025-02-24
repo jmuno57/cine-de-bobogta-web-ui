@@ -1,0 +1,100 @@
+{
+  "name": "bbog-cob-collections-stand-alone-web-ui",
+  "version": "0.1.2",
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-typescript": "^7.24.7",
+    "@npm-bbta/bbog-ate-sbx-utilities-lib": "^4.0.0-qa",
+    "@npm-bbta/bbog-cob-collections-dashboard-lib-ui-web": "0.0.25",
+    "@npm-bbta/bbog-dig-dt-webcomponents-lib": "5.3.6-version-bv-qa",
+    "@reduxjs/toolkit": "^2.2.7",
+    "@types/node": "^20.12.5",
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.24",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.7.9",
+    "buffer": "^6.0.3",
+    "crypto": "^1.0.1",
+    "crypto-es": "^2.1.0",
+    "dotenv": "^16.4.5",
+    "jest-fetch-mock": "^3.0.3",
+    "jsdom": "^24.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-idle-timer": "^5.0.0-rc.17",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+    "ts-md5": "^1.3.1",
+    "uuid": "^10.0.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "REACT_APP_ENVIRONMENT=Qa dotenv -e environments/.env.qa  react-app-rewired start",
+    "build:dev": "REACT_APP_ENVIRONMENT=Qa dotenv -e environments/.env.qa react-app-rewired build",
+    "build:qa": "REACT_APP_ENVIRONMENT=Qa dotenv -e environments/.env.qa react-app-rewired build",
+    "build:st": "REACT_APP_ENVIRONMENT=Staging dotenv -e environments/.env.st react-app-rewired build",
+    "build:pr": "REACT_APP_ENVIRONMENT=Production dotenv -e environments/.env.pr  react-app-rewired build",
+    "build:prod": "react-scripts build",
+    "prettier:check": "prettier --check \"src/**/*.ts\"",
+    "prettier:write": "prettier --config .prettierrc.json --write \"src/**/*.ts\"",
+    "test": "jest --coverage=true",
+    "test:coverage": "npm run prettier:check && react-scripts test --coverage --watchAll=false ",
+    "test:watch": "jest --no-cache --watchAll --coverage",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext js,ts,tsx",
+    "lint:fix": "npx eslint '*/**/*.{js,ts}' --fix",
+    "prettier:all": "prettier \"**/*.{ts,js,json,html,scss,md}\" --write",
+    "fix:all": "npm run prettier:all && npm run lint:fix"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "ignorePatterns": [
+      "src/**/*.test.ts",
+      "src/**/*.test.tsx",
+      "src/tests/"
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.12",
+    "@types/uuid": "^10.0.0",
+    "customize-cra": "^1.0.0",
+    "dotenv-cli": "^7.4.2",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "jest": "^29.7.0",
+    "msw": "^2.3.5",
+    "prettier": "^3.4.2",
+    "react-app-rewired": "^2.2.1",
+    "ts-jest": "^29.2.4",
+    "typescript": "^4.7.4"
+  }
+}

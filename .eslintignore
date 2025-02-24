@@ -1,0 +1,15 @@
+.eslintrc.js
+
+node_modules
+dist
+src/test-utils
+src/index.tsx
+src/core/shared
+src/core/infrastructure
+src/modules/authenticator-handler
+src/modules/detail-offer
+src/reportWebVitals.ts
+src/registry-wc
+coverage
+config
+.scannerwork
