@@ -14,10 +14,10 @@ export const useMovies = (refModal: any) => {
   const postDataRoom = async (e: any) => {
     console.log('values for create room', e);
     const body = {
-      title: e.nameRoom,
-      duration: 1,
-      clasification: 'Secuela de Avatar, una aventura épica.',
-      genre: 'Ciencia Ficción'
+      title: e.nameMovie,
+      duration: parseInt(e.durationMovie, 10),
+      clasification: e.descriptionMovie,
+      genre: e.genreMovie
     };
     await postMovies(body);
     setReload(true);

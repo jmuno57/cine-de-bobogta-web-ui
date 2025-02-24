@@ -31,7 +31,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "REACT_APP_ENVIRONMENT=Qa dotenv -e environments/.env.qa  react-app-rewired start",
+    "start": "react-app-rewired start",
     "build:dev": "REACT_APP_ENVIRONMENT=Qa dotenv -e environments/.env.qa react-app-rewired build",
     "build:qa": "REACT_APP_ENVIRONMENT=Qa dotenv -e environments/.env.qa react-app-rewired build",
     "build:st": "REACT_APP_ENVIRONMENT=Staging dotenv -e environments/.env.st react-app-rewired build",

@@ -25,10 +25,10 @@ const Movie = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(previusValue => ({
+      ...previusValue,
       [name]: value
-    });
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -61,7 +61,7 @@ const Movie = () => {
           <div slot="content">
             <form onSubmit={handleSubmit}>
               <Input
-                name="nameRoom"
+                name="nameMovie"
                 label="Nombre de la pelicula"
                 required="true"
                 message="Ingrese un nombre"
@@ -69,7 +69,7 @@ const Movie = () => {
                 onChange={handleChange}
               />
               <Input
-                name="capacityRoom"
+                name="descriptionMovie"
                 label="Descripción"
                 required="true"
                 message="Ingrese un valor"
@@ -77,7 +77,7 @@ const Movie = () => {
                 onChange={handleChange}
               />
               <Input
-                name="nameRoom"
+                name="durationMovie"
                 label="Duración"
                 required="true"
                 message="Ingrese un nombre"
@@ -85,7 +85,7 @@ const Movie = () => {
                 onChange={handleChange}
               />
               <Input
-                name="capacityRoom"
+                name="genreMovie"
                 label="Genero"
                 required="true"
                 message="Ingrese un valor"

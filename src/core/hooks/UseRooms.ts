@@ -12,10 +12,9 @@ export const useRooms = (refModal: any) => {
   };
 
   const postDataRoom = async (e: any) => {
-    console.log('values for create room', e);
     const body = {
       name: e.nameRoom,
-      capacity: 1
+      capacity: e.capacityRoom
     };
     await postRooms(body);
     setReload(true);
@@ -25,7 +24,7 @@ export const useRooms = (refModal: any) => {
     refModal?.current?.openAlert();
   };
   const closeModal = () => {
-        refModal?.current?.handleCloseClick();
+    refModal?.current?.handleCloseClick();
   };
   useEffect(() => {
     getDataRooms();

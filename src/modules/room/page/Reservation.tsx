@@ -16,8 +16,7 @@ const Reservation = () => {
     { colName: 'Nombre de la pelicula', control: 'text' },
     { colName: 'Sala', control: 'text' },
     { colName: 'Hora de ingreso', control: 'text' },
-    { colName: 'Hora de salida', control: 'text' },
-
+    { colName: 'Hora de salida', control: 'text' }
   ];
   const [formData, setFormData] = useState({
     nameRoom: '',
@@ -26,10 +25,10 @@ const Reservation = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(previusValue => ({
+      ...previusValue,
       [name]: value
-    });
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {

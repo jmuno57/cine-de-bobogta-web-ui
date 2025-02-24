@@ -25,10 +25,10 @@ const Billboard = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(previusValue => ({
+      ...previusValue,
       [name]: value
-    });
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {

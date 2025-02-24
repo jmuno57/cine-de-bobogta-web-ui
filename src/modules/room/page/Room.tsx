@@ -8,23 +8,22 @@ import { CollectionListBdbMlModal } from 'src/core/shared/utils/sherpa-tagged-co
 const Room = () => {
   const refmodal = useRef();
   const { rows, openCreateRoom, postDataRoom } = useRooms(refmodal);
+  const [formData, setFormData] = useState({
+    nameRoom: '',
+    capacityRoom: ''
+  });
   const columnsBDB: IColumn[] = [
     { colName: '', control: 'id' },
     { colName: 'Nombre de sala', control: 'text' },
     { colName: 'Cantidad de sillas', control: 'text' },
     { colName: '', control: 'text' }
   ];
-  const [formData, setFormData] = useState({
-    nameRoom: '',
-    capacityRoom: ''
-  });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(previusValue => ({
+      ...previusValue,
       [name]: value
-    });
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
