@@ -28,7 +28,6 @@ const Room = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
     postDataRoom(formData);
   };
   return (

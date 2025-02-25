@@ -7,7 +7,6 @@ export const useMovies = (refModal: any) => {
   const [reload, setReload] = useState<boolean>();
   const getDataRooms = async () => {
     const res = await getMovies();
-    console.log(res);
     setRows(res);
   };
 

@@ -10,6 +10,7 @@ src/modules/authenticator-handler
 src/modules/detail-offer
 src/reportWebVitals.ts
 src/registry-wc
+src/*
 coverage
 config
 .scannerwork

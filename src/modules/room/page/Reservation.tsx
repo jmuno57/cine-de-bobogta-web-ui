@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useReservation } from 'src/core/hooks/useReservation';
 import { Input } from 'src/core/shared/components/input/Input';
+import { Select } from 'src/core/shared/components/select/Select';
 import { IColumn, Table } from 'src/core/shared/components/table/Table';
 import { Title } from 'src/core/shared/components/title/Tile';
 import { CollectionListBdbMlModal } from 'src/core/shared/utils/sherpa-tagged-components';
 
 const Reservation = () => {
   const refmodal = useRef();
-  const { rows, openCreateRoom, postDataRoom } = useReservation(refmodal);
+  const { rows, openCreateRoom, postDataRoom, shedule } = useReservation(refmodal);
   const columnsBDB: IColumn[] = [
     { colName: '', control: 'id' },
     { colName: 'Nombre', control: 'text' },
@@ -23,17 +24,26 @@ const Reservation = () => {
     capacityRoom: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const handleChange = (e: any) => {
+    console.log(e.detail);
+    let nameX;
+    let valueX;
+    if (e.detail) {
+      nameX = e.detail.name;
+      valueX = e.detail.value;
+    } else {
+      const { name, value } = e.target;
+      nameX = name;
+      valueX = value;
+    }
     setFormData(previusValue => ({
       ...previusValue,
-      [name]: value
+      [nameX]: valueX
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
     postDataRoom(formData);
   };
   return (
@@ -61,35 +71,34 @@ const Reservation = () => {
           <div slot="content">
             <form onSubmit={handleSubmit}>
               <Input
-                name="nameMovie"
+                name="client"
+                label="Nombre del cliente"
+                required="true"
+                message="Ingrese un nombre"
+                value={formData.nameRoom}
+                onChange={handleChange}
+              />
+              <Input
+                name="email"
+                label="Ingrese correo electrónico"
+                required="true"
+                message="Ingrese un valor"
+                value={formData.capacityRoom}
+                onChange={handleChange}
+              />
+              <Input
+                name="site"
+                label="Ingrese silla"
+                required="true"
+                message="Ingrese un valor"
+                value={formData.capacityRoom}
+                onChange={handleChange}
+              />
+              <Select
+                name="nam"
                 label="Seleccione la pelicula"
-                required="true"
                 message="Ingrese un nombre"
-                value={formData.nameRoom}
-                onChange={handleChange}
-              />
-              <Input
-                name="capacityRoom"
-                label="Seleccione la sala"
-                required="true"
-                message="Ingrese un valor"
-                value={formData.capacityRoom}
-                onChange={handleChange}
-              />
-              <Input
-                name="nameRoom"
-                label="Seleccione hora de inicio"
-                required="true"
-                message="Ingrese un nombre"
-                value={formData.nameRoom}
-                onChange={handleChange}
-              />
-              <Input
-                name="capacityRoom"
-                label="Seleccione hora final"
-                required="true"
-                message="Ingrese un valor"
-                value={formData.capacityRoom}
+                options={shedule}
                 onChange={handleChange}
               />
               <div className="container-button" style={{ width: '200px', marginTop: '24px' }}>

@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useBillboard } from 'src/core/hooks/useBillboard';
 import { Input } from 'src/core/shared/components/input/Input';
+import { Select } from 'src/core/shared/components/select/Select';
 import { IColumn, Table } from 'src/core/shared/components/table/Table';
 import { Title } from 'src/core/shared/components/title/Tile';
 import { CollectionListBdbMlModal } from 'src/core/shared/utils/sherpa-tagged-components';
 
 const Billboard = () => {
   const refmodal = useRef();
-  const { rows, openCreateRoom, postDataRoom } = useBillboard(refmodal);
+  const { rows, openCreateRoom, postDataRoom, rooms, movies } = useBillboard(refmodal);
   const columnsBDB: IColumn[] = [
     { colName: '', control: 'id' },
     { colName: 'Pelicula', control: 'text' },
@@ -23,17 +24,26 @@ const Billboard = () => {
     capacityRoom: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const handleChange = (e: any) => {
+    console.log(e.detail);
+    let nameX;
+    let valueX;
+    if (e.detail) {
+      nameX = e.detail.name;
+      valueX = e.detail.value;
+    } else {
+      const { name, value } = e.target;
+      nameX = name;
+      valueX = value;
+    }
     setFormData(previusValue => ({
       ...previusValue,
-      [name]: value
+      [nameX]: valueX
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
     postDataRoom(formData);
   };
   return (
@@ -47,7 +57,6 @@ const Billboard = () => {
             Crear
           </button>
         </div>
-
         <div className="container-Table" style={{ marginTop: '24px' }}>
           <Table columns={columnsBDB} data={rows} />
         </div>
@@ -60,20 +69,18 @@ const Billboard = () => {
         >
           <div slot="content">
             <form onSubmit={handleSubmit}>
-              <Input
+              <Select
                 name="nam"
                 label="Seleccione la pelicula"
-                required="true"
                 message="Ingrese un nombre"
-                value={formData.nameRoom}
+                options={movies}
                 onChange={handleChange}
               />
-              <Input
-                name="capacityRoom"
+              <Select
+                name="room"
                 label="Seleccione la sala"
-                required="true"
-                message="Ingrese un valor"
-                value={formData.capacityRoom}
+                message="Ingrese un nombre"
+                options={rooms}
                 onChange={handleChange}
               />
               <Input

@@ -1,39 +1,47 @@
 import { useEffect, useState } from 'react';
-import { postBillboard } from '../../../src/core/shared/store/services/post/postBillboard';
 import { getReservation } from '../../../src/core/shared/store/services/get/getReservation';
+import { getBillboard } from '../../../src/core/shared/store/services/get/getBillboard';
+import { postReserve } from '../../../src/core/shared/store/services/post//postReservation';
 
 export const useReservation = (refModal: any) => {
   const [rows, setRows] = useState([]);
+  const [shedule, setShedule] = useState([]);
   const [reload, setReload] = useState<boolean>();
   const getDataRooms = async () => {
     const res = await getReservation();
-    console.log(res);
     const result = res.flatMap(entry => {
       return entry.seats.map(seat => ({
-        id:'',
+        id: '',
         name: entry.name,
         email: entry.email,
         seat: seat,
         movieId: entry.shedule.movie,
         roomId: entry.shedule.room,
         startTime: entry.shedule.startTime,
-        endTime: entry.shedule.endTime,
+        endTime: entry.shedule.endTime
       }));
     });
-console.log("Buenas",result)
     setRows(result);
   };
-
+  const getData = async () => {
+    const resMovies = await getBillboard();
+    console.log('Nuevooooo', resMovies);
+    const movies = resMovies.map(movie => ({
+      text: movie._id,
+      value: movie._id
+    }));
+    setShedule(movies);
+  };
   const postDataRoom = async (e: any) => {
-    console.log('Aqui', e);
+    console.log(e);
     const body = {
-      movieId: e.nameMovie,
-      roomId: '67bc004f230e09df8a363ce3',
-      startTime: new Date(Date.now()),
-      endTime: new Date(Date.now() + 2)
+      name: e.client,
+      email: e.email,
+      seats: [Number(e.site)],
+      sheduleId: e.nam
     };
 
-    await postBillboard(body);
+    await postReserve(body);
     setReload(true);
     refModal?.current?.handleCloseClick();
   };
@@ -45,6 +53,7 @@ console.log("Buenas",result)
   };
   useEffect(() => {
     getDataRooms();
+    getData();
   }, [reload]);
 
   useEffect(() => {
@@ -57,6 +66,7 @@ console.log("Buenas",result)
   return {
     rows,
     openCreateRoom,
-    postDataRoom
+    postDataRoom,
+    shedule
   };
 };

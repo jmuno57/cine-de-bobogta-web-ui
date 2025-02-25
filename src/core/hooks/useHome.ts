@@ -20,7 +20,6 @@ export const useHome = (sideBar: any) => {
   const location = useLocation();
   const [itemSelected, setItemSelected] = useState(1);
   const sideOpen = (event: any) => {
-    console.log(event);
     const select: any = event.detail.item.label;
     navigate(navigation[select]);
     window.scrollTo({
